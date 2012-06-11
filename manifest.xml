@@ -1,0 +1,21 @@
+<package>
+  <description brief="Inertial Measurement Unit Model">
+  Rock component for the noise simulation of an IMU sensor using the shaping filter technique. It simulates deterministics and stochastics errors to a ideal measurement information.
+  The detreministic noise are scale factor and bias offset. The stochastics errors are random walk, bias instability by a first Markov-Gauss approximation and rate random walk.
+  </description>
+  <author>Javier Hidalgo Carrio/javier.hidalgo_carrio@dfki.de</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  
+  <depend package="tools/logger"/>
+  <depend package="base/types"/>
+  
+  <!--
+   To add any dependencies use the depend tag
+  <depend package="dummy-dependency-0" />
+	...
+  <depend package="dummy-dependency-n-1" />
+  <depend package="dummy-dependency-n" />
+  -->
+</package>

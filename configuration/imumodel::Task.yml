@@ -1,0 +1,153 @@
+--- name:default
+# no documentation available for this property
+Dacc: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+# no documentation available for this property
+Dgyro: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+# no documentation available for this property
+abeta: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+
+dt: 0.01
+# no documentation available for this property
+gbeta: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+
+--- name:imt30
+# no documentation available for this property
+#m/s^2
+accbias: 
+  data: 
+  - 0.0009178037
+  - 0.0013872932
+  - 0.0010330874
+# no documentation available for this property
+#m/s^2/sqrt(s)
+accrrw: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+# no documentation available for this property
+#m/s/sqrt(s)
+accrw: 
+  data: 
+  - 0.00149833 
+  - 0.002537827
+  - 0.0021035268
+
+# no documentation available for this property
+#rad/s
+gyrobias: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+# no documentation available for this property
+#rad/s/sqrt(s)
+gyrorrw: 
+  data: 
+  - 3.90E-06
+  - 5.41E-06
+  - 5.19E-06
+# no documentation available for this property
+#rad/sqrt(s)
+gyrorw: 
+  data: 
+  - 6.04E-05
+  - 6.94E-05
+  - 5.96E-05
+
+--- name:mti_xsens
+# no documentation available for this property
+#m/s/sqrt(s)
+accrw: 
+  data: 
+  - 0.0010310305 
+  - 0.001318912
+  - 0.0011245297
+# no documentation available for this property
+#rad/s/sqrt(s)
+gyrorrw: 
+  data: 
+  - 2.65E-06
+  - 4.01E-06
+  - 5.19E-06
+# no documentation available for this property
+#rad/sqrt(s)
+gyrorw: 
+  data: 
+  - 0.0006898864
+  - 0.0007219069
+  - 0.0005708627
+
+--- name:onlyrw
+# no documentation available for this property
+#m/s/sqrt(s)
+accrw: 
+  data: 
+  - 0.0010310305 
+  - 0.001318912
+  - 0.0011245297
+# no documentation available for this property
+#rad/s/sqrt(s)
+gyrorrw: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0
+# no documentation available for this property
+#rad/sqrt(s)
+gyrorw: 
+  data: 
+  - 0.0006898864
+  - 0.0007219069
+  - 0.0005708627
+
+--- name:gyrosonlyrrw
+# no documentation available for this property
+#m/s/sqrt(s)
+accrw: 
+  data: 
+  - 0.0010310305 
+  - 0.001318912
+  - 0.0011245297
+# no documentation available for this property
+#rad/s/sqrt(s)
+gyrorrw: 
+  data: 
+  - 2.65E-06
+  - 4.01E-06
+  - 5.19E-06
+# no documentation available for this property
+#rad/sqrt(s)
+gyrorw: 
+  data: 
+  - 0.0
+  - 0.0
+  - 0.0

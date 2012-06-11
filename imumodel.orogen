@@ -1,0 +1,117 @@
+####################################
+# Orogen file for the IMU model
+####################################
+name "imumodel"
+# Optionally declare the version number
+# version "0.1"
+
+# If new data types need to be defined, they have to be put in a separate C++
+# header, and this header will be loaded here
+# import_types_from "imumodelType.hpp"
+
+import_types_from "base"
+
+# If the component/deployments use data types that are defined in other oroGen
+# projects, these projects should be imported there as well.
+# import_types_from "base"
+
+# Declare a new task context (i.e., a component)
+#
+# The corresponding C++ class can be edited in tasks/Task.hpp and
+# tasks/Task.cpp, and will be put in the imumodel namespace.
+task_context "Task" do
+   ####################################
+   # IMU Deterministic noise parameters
+   ####################################
+   # A configuration property (here, a std::string). Its value can be retrieved
+   # in the C++ code with # _config_value.get() and _config_value.set(new_value).
+   # property "config_value", "/std/string"
+
+   # Frequency (period in sec)
+   property "dt", "double"
+      doc "Frequency of the sampling time of the imu values."
+
+
+   #####################
+   # For Accelerometers
+   #####################
+   property "Dacc", "/base/Matrix3d"
+      doc "Deterministic error matrix containing scale factor and misalignement"
+
+   #####################
+   # For Gyroscopes
+   #####################
+   property "Dgyro", "/base/Matrix3d"
+      doc "Deterministic error matrix containing scale factor and misalignement"
+   
+
+   ####################################
+   # IMU Stochastic noise parameters
+   ####################################
+
+   #####################
+   # For Accelerometers
+   #####################
+   property "accrw", "/base/Vector3d"
+      doc "velocity random walk for accelerometers (m/s/sqrt(s))"
+   property "accrrw", "/base/Vector3d"
+      doc "acceleration random walk for accelerometers (m/s^2/sqrt(s))"
+   property "accbias", "/base/Vector3d"
+      doc "bias instability for accelerometers (m/s^2)"
+   property "abeta", "/base/Vector3d"
+      doc "is the reciprocal correlated noise for the bias instability approximation by first Guass-Markov process and need to be determinated"
+
+   #####################
+   # For Gyroscopes
+   #####################
+   property "gyrorw", "/base/Vector3d"
+      doc "angle random walk for gyroscopes (rad/sqrt(s))"
+   property "gyrorrw", "/base/Vector3d"
+      doc "rate random walk for gyroscopes (rad/s/sqrt(s))"
+   property "gyrobias", "/base/Vector3d"
+      doc "bias instability for gyroscopes (rad/s)"
+   property "gbeta", "/base/Vector3d"
+      doc "is the reciprocal correlated noise (1/sec) for the bias instability approximation by first Guass-Markov process and need to be determinated"
+
+   #####################
+   # Input Ports
+   #####################
+   # An input port, i.e. an object from which the component gets data from
+   # other components' outputs
+   #
+   # Data can be retrieved using _input.read(value), which returns true if data
+   # was available, and false otherwise. _input.connected() returns if this
+   # input is connected to an output or not.
+   input_port "imuin", "/base/samples/IMUSensors"
+     doc "IMU data type with the ideal values (acc, gyros, magn)"
+
+   #####################
+   # Output Ports
+   #####################
+   # An output port, i.e. an object to which the component pushes data so that
+   # it is transmitted to other components' inputs
+   #
+   # Data can be written using _output.write(value). _output.connected() returns
+   # if this output is connected to an input or not.
+   output_port "imuout", "/base/samples/IMUSensors"
+      doc "IMU data type with values with the simulated noise (acc, gyros, magn)"
+
+   # If you want that component's updateHook() to be executed when the "input"
+   # port gets data, uncomment this
+   #port_driven "imuin"
+   #   doc "the task is port driven, when a new sample arrives following dt sample time"
+
+end
+
+
+# Declares a deployment, i.e. an actual executable that contains various tasks.
+deployment "imumodel" do
+    # This is a test deployment that should not be installed
+    #do_not_install
+    add_default_logger
+
+    # Declares it as periodic, with a period of 100ms
+    task("imumodel", "Task").
+      realtime.
+      periodic(0.01) # needs to be the same than dt property
+end
