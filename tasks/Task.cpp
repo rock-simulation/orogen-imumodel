@@ -1,6 +1,5 @@
 /* Generated from orogen/lib/orogen/templates/tasks/Task.cpp */
 
-#include <boost/random.hpp>
 #include <boost/random/normal_distribution.hpp>
 #include "Task.hpp"
 
@@ -28,6 +27,11 @@ Task::~Task()
 
 bool Task::configureHook()
 {
+   // initialize random number generator
+   unsigned long seed =  
+	(_seed.value() == -1) ? time(0) : _seed.value();
+   rng = RandomGenerator( seed ); 
+
    base::Vector3d abeta = _abeta.get();
    base::Vector3d accrrw = _accrrw.get();
    base::Vector3d accbias = _accbias.get();
@@ -285,11 +289,7 @@ void Task::cleanupHook()
 double Task::GetNormalDistri(double mean, double sigma)
 {
  typedef boost::normal_distribution<double> NormalDistribution;
- typedef boost::mt19937 RandomGenerator;
  typedef boost::variate_generator<RandomGenerator&,NormalDistribution> GaussianGenerator;
- 
-  /** Initiate Random Number generator with current time */
-  static RandomGenerator rng(static_cast<unsigned> (time(0)));
  
   /* Choose Normal Distribution */
   NormalDistribution gaussian_dist(mean, sigma);

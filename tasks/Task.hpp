@@ -4,6 +4,7 @@
 #define IMUMODEL_TASK_TASK_HPP
 
 #include "imumodel/TaskBase.hpp"
+#include <boost/random.hpp>
 
 namespace imumodel {
 
@@ -77,6 +78,8 @@ namespace imumodel {
       * and sigma standard deviation 
       * 
       ******************************************************************************/       
+       typedef boost::mt19937 RandomGenerator;
+       RandomGenerator rng; 
        double GetNormalDistri(double mean, double sigma);
 
 

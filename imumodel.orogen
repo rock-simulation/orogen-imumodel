@@ -20,6 +20,9 @@ import_types_from "base"
 # The corresponding C++ class can be edited in tasks/Task.hpp and
 # tasks/Task.cpp, and will be put in the imumodel namespace.
 task_context "Task" do
+   property "seed", "int", -1
+      doc "Random seed to be used for random number generation. Use -1 to initialize seed with current time."
+
    ####################################
    # IMU Deterministic noise parameters
    ####################################
