@@ -50,9 +50,9 @@ bool Task::configureHook()
      Gax (0,0) = accrrw[0]* abeta[0];
      Gax (1,0) = (accrrw[0]*sqrt(dt/3))+ abeta[0]*accbias[0];
      
-     std::cout << "Xaxis\n";
-     std::cout << Aax<<"\n";
-     std::cout << Gax<<"\n";
+//     std::cout << "Xaxis\n";
+//     std::cout << Aax<<"\n";
+//     std::cout << Gax<<"\n";
      
     
     /** Fill the matrices with the configure values for the accelerometer model Y axis **/
@@ -64,9 +64,9 @@ bool Task::configureHook()
     Gay (0,0) = accrrw[1]* _abeta.value()(1);
     Gay (1,0) = (accrrw[1]*sqrt(dt/3))+ abeta[1]*accbias[1];
     
-    std::cout << "Yaxis\n";
-     std::cout << Aay<<"\n";
-     std::cout << Gay<<"\n";
+//    std::cout << "Yaxis\n";
+//     std::cout << Aay<<"\n";
+//     std::cout << Gay<<"\n";
     
     /** Fill the matrices with the configure values for the accelerometer model Z axis **/
     Aaz(0,0) = 1.0;
@@ -77,9 +77,9 @@ bool Task::configureHook()
     Gaz (0,0) = accrrw[2]* _abeta.value()(1);
     Gaz (1,0) = (accrrw[2]*sqrt(dt/3))+ abeta[2]*accbias[2];
     
-    std::cout << "Zaxis\n";
-     std::cout << Aaz<<"\n";
-     std::cout << Gaz<<"\n";
+//    std::cout << "Zaxis\n";
+//     std::cout << Aaz<<"\n";
+//     std::cout << Gaz<<"\n";
     
     /** Measurement matrix **/
     Ha << 0,1;
@@ -94,9 +94,9 @@ bool Task::configureHook()
     Ggx (0,0) = gyrorrw[0]* gbeta[0];
     Ggx (1,0) = (gyrorrw[0]*sqrt(dt/3)) + gbeta[0]*gyrobias[0];
     
-    std::cout << "Xaxis\n";
-     std::cout << Agx<<"\n";
-     std::cout << Ggx<<"\n";
+//    std::cout << "Xaxis\n";
+//     std::cout << Agx<<"\n";
+//     std::cout << Ggx<<"\n";
     
     /** Fill the matrices with the configure values for the gyroscope model Y axis **/
     Agy(0,0) = 1.0;
@@ -107,9 +107,9 @@ bool Task::configureHook()
     Ggy (0,0) = gyrorrw[1]* gbeta[1];
     Ggy (1,0) = (gyrorrw[1]*sqrt(dt/3)) + gbeta[1]*gyrobias[1];
     
-    std::cout << "Yaxis\n";
-     std::cout << Agy<<"\n";
-     std::cout << Ggy<<"\n";
+//    std::cout << "Yaxis\n";
+//     std::cout << Agy<<"\n";
+//     std::cout << Ggy<<"\n";
     
     /** Fill the matrices with the configure values for the gyroscope model Z axis **/
     Agz(0,0) = 1.0;
@@ -120,9 +120,9 @@ bool Task::configureHook()
     Ggz (0,0) = gyrorrw[2]* gbeta[1];
     Ggz (1,0) = (gyrorrw[2]*sqrt(dt/3)) + gbeta[2]*gyrobias[2];
     
-    std::cout << "Zaxis\n";
-     std::cout << Agz<<"\n";
-     std::cout << Ggz<<"\n";
+//    std::cout << "Zaxis\n";
+//     std::cout << Agz<<"\n";
+//     std::cout << Ggz<<"\n";
      
     /** Measurement matrix **/
     Hg << 0,1;
@@ -208,7 +208,7 @@ void Task::updateHook()
     stdacc[0] = _accrw.value()[0]/sqrt(_dt.value());
     stdacc[1] = _accrw.value()[1]/sqrt(_dt.value());
     stdacc[2] = _accrw.value()[2]/sqrt(_dt.value());
-    std::cout << "Standard deviation(acc)\n" <<stdacc <<"\n";
+//    std::cout << "Standard deviation(acc)\n" <<stdacc <<"\n";
   
     /** Perform the model step for Accelerometers Xaxis **/
     xax = Aax * xax + Gax * GetNormalDistri(0,1.0);
@@ -233,7 +233,7 @@ void Task::updateHook()
     stdgyro[0] = _gyrorw.value()[0]/sqrt(_dt.value());
     stdgyro[1] = _gyrorw.value()[1]/sqrt(_dt.value());
     stdgyro[2] = _gyrorw.value()[2]/sqrt(_dt.value());
-    std::cout << "Standard deviation(gyro)\n" <<stdgyro <<"\n";
+//    std::cout << "Standard deviation(gyro)\n" <<stdgyro <<"\n";
     
     /** Perform the model step for gyroscopes Xaxis **/
     xgx = Agx * xgx + Ggx * GetNormalDistri(0,1.0);
