@@ -5,7 +5,7 @@
 
 #include "imumodel/TaskBase.hpp"
 #include <boost/random.hpp>
-#include "ImuModel.hpp"
+#include <imumodel/ImuError.hpp>
 
 namespace imumodel {
 
@@ -30,7 +30,7 @@ namespace imumodel {
 	
     protected:
        bool inport_connected;
-       ImuModel model;
+       ImuError model;
 
     public:
         /** TaskContext constructor for Task

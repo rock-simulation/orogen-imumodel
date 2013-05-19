@@ -10,6 +10,7 @@
   
   <depend package="tools/logger"/>
   <depend package="base/types"/>
+  <depend package="simulation/imumodel"/>
   
   <!--
    To add any dependencies use the depend tag

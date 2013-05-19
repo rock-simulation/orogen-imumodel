@@ -2,7 +2,7 @@
 
 include(imumodelTaskLib)
 ADD_LIBRARY(${IMUMODEL_TASKLIB_NAME} SHARED 
-    ${IMUMODEL_TASKLIB_SOURCES} ImuModel.cpp)
+    ${IMUMODEL_TASKLIB_SOURCES})
 
 add_dependencies(${IMUMODEL_TASKLIB_NAME}
     regen-typekit)

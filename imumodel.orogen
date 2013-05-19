@@ -10,6 +10,7 @@ name "imumodel"
 # import_types_from "imumodelType.hpp"
 
 import_types_from "base"
+using_library "imumodel"
 
 # If the component/deployments use data types that are defined in other oroGen
 # projects, these projects should be imported there as well.
