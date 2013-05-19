@@ -5,6 +5,7 @@
 
 #include "imumodel/TaskBase.hpp"
 #include <boost/random.hpp>
+#include "ImuModel.hpp"
 
 namespace imumodel {
 
@@ -23,65 +24,13 @@ namespace imumodel {
      *  It can be dynamically adapted when the deployment is called with a prefix argument. 
      */
     
-    /** General defines **/
-    #ifndef OK
-    #define OK	0  /**< Integer value in order to return when everything is all right. */
-    #endif
-    #ifndef ERROR
-    #define ERROR -1  /**< Integer value in order to return when an error occured. */
-    #endif
-    
-    /** Sensors constant parameters **/
-    #ifndef NUMAXIS
-    #define NUMAXIS 3 /**< Number of axis sensed by the sensors **/
-    #endif
-    
     class Task : public TaskBase
     {
 	friend class TaskBase;
 	
     protected:
        bool inport_connected;
-       base::Vector2d xax; /**< State vector for acc x axis model*/
-       base::Vector2d xay; /**< State vector for acc y axis model*/
-       base::Vector2d xaz; /**< State vector for acc z axis model*/
-  
-       
-       base::Matrix2d Aax; /**< State Matrix for Accelerometer x axis */
-       base::Vector2d Gax; /**< Input Matrix for Accelerometer x axis */
-       base::Matrix2d Aay; /**< State Matrix for Accelerometer y axis */
-       base::Vector2d Gay; /**< Input Matrix for Accelerometer y axis */
-       base::Matrix2d Aaz; /**< State Matrix for Accelerometer z axis */
-       base::Vector2d Gaz; /**< Input Matrix for Accelerometer z axis */
-       base::Vector2d Ha; /**< Observation Matrix for Accelerometers */
-      
-       
-       base::Vector2d xgx; /**< State vector for gyro x axis model*/
-       base::Vector2d xgy; /**< State vector for gyro y axis model*/
-       base::Vector2d xgz; /**< State vector for gyro z axis model*/
-
-       
-       base::Matrix2d Agx; /**< State Matrix for Gyro x axis */
-       base::Vector2d Ggx; /**< Input Matrix for Gyro x axis */
-       base::Matrix2d Agy; /**< State Matrix for Gyro y axis */
-       base::Vector2d Ggy; /**< Input Matrix for Gyro y axis */
-       base::Matrix2d Agz; /**< State Matrix for Gyro z axis */
-       base::Vector2d Ggz; /**< Input Matrix for Gyro z axis */
-       base::Vector2d Hg; /**< Observation Matrix for Gyroscopes */
-       
-       
-       Eigen::Matrix <double,NUMAXIS,1> acc, gyros; /**< Accelerometer and gyroscopes output vectors */
-       Eigen::Matrix <double,NUMAXIS,NUMAXIS> Dacc, Dgyro; /**< Deterministics error matrices for acc and gyros*/
-       
-      /*******************************************************************************
-      * Normal distribution funcation which generates number with mean mean parameter 
-      * and sigma standard deviation 
-      * 
-      ******************************************************************************/       
-       typedef boost::mt19937 RandomGenerator;
-       RandomGenerator rng; 
-       double GetNormalDistri(double mean, double sigma);
-
+       ImuModel model;
 
     public:
         /** TaskContext constructor for Task

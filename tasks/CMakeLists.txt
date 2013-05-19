@@ -2,11 +2,10 @@
 
 include(imumodelTaskLib)
 ADD_LIBRARY(${IMUMODEL_TASKLIB_NAME} SHARED 
-    ${IMUMODEL_TASKLIB_SOURCES})
+    ${IMUMODEL_TASKLIB_SOURCES} ImuModel.cpp)
 
 add_dependencies(${IMUMODEL_TASKLIB_NAME}
     regen-typekit)
-
 
 TARGET_LINK_LIBRARIES(${IMUMODEL_TASKLIB_NAME}
     ${OrocosRTT_LIBRARIES}
