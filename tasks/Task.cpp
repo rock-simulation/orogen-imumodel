@@ -45,7 +45,7 @@ bool Task::configureHook()
 
     model.setConfiguration( config );
     model.init();
-    
+
     /** Check if there is connection in the input port **/
     if (!_imuin.connected())
     {
@@ -56,30 +56,23 @@ bool Task::configureHook()
     {
        inport_connected = true;
     }
-    
+
     /** Ask if the Task is periodic and is the period is the same than the dt config value **/
     double dt = model.getConfiguration().dt;
-    if ((TaskContext::getPeriod() != dt) && (TaskContext::getPeriod() != 0.0))
-    {
-	 std::cout<< "configure(warning): the task has two periods values\n";
-	 TaskContext::setPeriod(dt);
-	 std::cout<< "configure: the task is configured to("<<dt<<") seconds period\n";
-    }
-      else
-	 std::cout << "configure:: period(" << TaskContext::getPeriod() <<")\n";
+    std::cout << "configure:: bandwidth(" << dt <<")\n";
 
-    
+
     return true;
 }
 bool Task::startHook()
 {
     if (! TaskBase::startHook())
         return false;
-    
+
     model.reset();
-    
+
     std::cout << "start:: Model initialized" <<"\n";
-    
+
     return true;
 }
 void Task::updateHook()
@@ -100,8 +93,6 @@ void Task::updateHook()
 
     model.step();
     model.addNoise( imu_data );
-
-    imu_data.time = timestamp;
 
     _imuout.write(imu_data); // write in the port
 }

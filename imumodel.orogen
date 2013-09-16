@@ -31,9 +31,9 @@ task_context "Task" do
    # in the C++ code with # _config_value.get() and _config_value.set(new_value).
    # property "config_value", "/std/string"
 
-   # Frequency (period in sec)
+   #Bandwidth  (period in sec)
    property "dt", "double"
-      doc "Frequency of the sampling time of the imu values."
+      doc "Bandwidth of the imu values."
 
 
    #####################
@@ -102,20 +102,9 @@ task_context "Task" do
 
    # If you want that component's updateHook() to be executed when the "input"
    # port gets data, uncomment this
-   #port_driven "imuin"
-   #   doc "the task is port driven, when a new sample arrives following dt sample time"
+   port_driven "imuin"
+      doc "the task is port driven, when a new sample arrives following dt sample time"
 
 end
 
 
-# Declares a deployment, i.e. an actual executable that contains various tasks.
-deployment "imumodel" do
-    # This is a test deployment that should not be installed
-    #do_not_install
-    add_default_logger
-
-    # Declares it as periodic, with a period of 100ms
-    task("imumodel", "Task").
-      realtime.
-      periodic(0.01) # needs to be the same than dt property
-end
