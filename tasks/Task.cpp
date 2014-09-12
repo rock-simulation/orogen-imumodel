@@ -78,7 +78,6 @@ bool Task::startHook()
 void Task::updateHook()
 {
     base::samples::IMUSensors imu_data; /**< IMU input in the port */
-    base::Time timestamp = base::Time::now();
 
     /** Read the coming values from the inport **/
     if (inport_connected)
