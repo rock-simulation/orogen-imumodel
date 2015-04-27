@@ -78,7 +78,6 @@ bool Task::startHook()
 void Task::updateHook()
 {
     base::samples::IMUSensors imu_data; /**< IMU input in the port */
-    base::Time timestamp = base::Time::now();
 
     /** Read the coming values from the inport **/
     if (inport_connected)
@@ -88,7 +87,8 @@ void Task::updateHook()
 	imu_data.acc[0] = 0.0;
 	imu_data.acc[1] = 0.0;
 	imu_data.acc[2] = 9.81;
-	imu_data.gyro = Eigen::Matrix<double,ImuError::NUMAXIS,1>::Zero();
+	imu_data.gyro.setZero();
+	imu_data.mag.setZero();
     }
 
     model.step();
